@@ -1,7 +1,7 @@
 ﻿body {
   margin: 0;
   font-family: Inter, system-ui, sans-serif;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #410353 100%);
   color: #e2e8f0;
   min-height: 100vh;
 }
@@ -26,9 +26,9 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 2rem;
-  background: rgba(15, 23, 42, 0.85);
+  background: #0b1120;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  border-bottom: 1px solid rgba(197, 85, 32, 0.1);
 }
 
 .navbar-brand {
@@ -37,53 +37,29 @@
   color: #f8fafc;
 }
 
-.navbar-center {
+.navbar-search {
   flex: 1;
   display: flex;
   justify-content: center;
 }
 
-.navbar-search {
-  width: 100%;
-  max-width: 420px;
-}
-
 .search-input {
-  width: 100%;
-  padding: 0.95rem 1rem;
+  width: min(500px, 100%);
+  padding: 0.8rem 1rem;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid #334155;
+  background: #0f172a;
   color: #e2e8f0;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .search-input:focus {
   border-color: #8b5cf6;
-  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
-  transform: translateY(-1px);
 }
 
-.navbar-right {
+.nav-links {
   display: flex;
-  gap: 0.8rem;
-}
-
-.nav-link {
-  background: rgba(124, 58, 237, 0.16);
-  color: #f8fafc;
-  border: 1px solid rgba(124, 58, 237, 0.35);
-  border-radius: 999px;
-  padding: 0.7rem 1rem;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.nav-link:hover {
-  background: rgba(124, 58, 237, 0.35);
-  border-color: rgba(124, 58, 237, 0.55);
+  gap: 1.5rem;
 }
 
 .nav-links a,
@@ -94,13 +70,42 @@
 
 .nav-button,
 .product-card button {
-  background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+  background: linear-gradient(90deg, #8b5cf6, #73217a);
   color: #fff;
   border: none;
   border-radius: 999px;
   padding: 0.8rem 1rem;
   font-weight: 600;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.25);
+}
+
+.nav-button:hover,
+.product-card button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(124, 58, 237, 0.38);
+}
+
+.nav-button:active,
+.product-card button:active {
+  transform: scale(0.97);
+}
+
+.nav-button::after,
+.product-card button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transform: translateX(-100%);
+}
+
+.nav-button:hover::after,
+.product-card button:hover::after {
+  animation: shimmer 0.6s ease;
 }
 
 .home-page {
@@ -135,6 +140,21 @@
 .hero-text {
   margin-top: 0.75rem;
   color: #cbd5e1;
+  max-width: 740px;
+  line-height: 1.75;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e2e8f0;
 }
 
 .product-grid {
@@ -146,8 +166,8 @@
 }
 
 .product-card {
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(27, 5, 48, 0.9);
+  border: 1px solid rgba(87, 5, 69, 0.12);
   border-radius: 1rem;
   padding: 1.75rem;
   text-align: left;
@@ -177,6 +197,37 @@
   font-size: 2rem;
   font-weight: 700;
   margin: 0;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 240px;
+  gap: 0.75rem;
+}
+
+.loader-spinner {
+  width: 56px;
+  height: 56px;
+  border: 5px solid #334155;
+  border-top-color: #a78bfa;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .loading-text,
@@ -213,6 +264,7 @@
   background: rgba(15, 23, 42, 0.92);
   border: 1px solid rgba(148, 163, 184, 0.12);
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.32);
+  backdrop-filter: blur(10px);
 }
 
 .login-card h1 {
@@ -254,6 +306,17 @@
   box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
 }
 
+.login-form input[aria-invalid='true'] {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.field-error {
+  font-size: 0.85rem;
+  color: #fca5a5;
+  min-height: 1rem;
+}
+
 .login-form button {
   width: 100%;
   padding: 0.95rem 1rem;
@@ -263,12 +326,34 @@
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.25);
 }
 
 .login-form button:hover {
-  transform: translateY(-1px);
-  opacity: 0.96;
+  transform: translateY(-2px) scale(1.02);
+  opacity: 0.98;
+  box-shadow: 0 14px 28px rgba(124, 58, 237, 0.38);
+}
+
+.login-form button:active {
+  transform: scale(0.97);
+}
+
+.login-form button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.login-form button:hover::after {
+  animation: shimmer 0.7s ease;
 }
 
 .switch-text {
@@ -294,4 +379,51 @@
   margin: 1.25rem 0 0;
   color: #a5f3fc;
   font-size: 0.95rem;
+  text-align: center;
+}
+
+.add-product-page {
+  padding: 2rem 1rem;
+}
+
+.add-product-card {
+  width: min(620px, 100%);
+}
+
+.add-product-form {
+  gap: 1rem;
+}
+
+.add-product-textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  padding: 0.95rem 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #e2e8f0;
+  outline: none;
+  font: inherit;
+}
+
+.add-product-textarea:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+}
+
+.file-input-wrapper {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.file-input-wrapper input[type='file'] {
+  width: 100%;
+  padding: 0.75rem 0;
+  color: #cbd5e1;
+}
+
+.file-input-label {
+  color: #94a3b8;
+  font-size: 0.9rem;
 }

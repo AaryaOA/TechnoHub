@@ -58,7 +58,7 @@ function Signup({ onSwitch }) {
             />
           </label>
 
-          <button type="submit">Sign Up</button>
+          <button type="submit" className="popup-btn">Sign Up</button>
         </form>
 
         {message && <p className="login-message">{message}</p>}

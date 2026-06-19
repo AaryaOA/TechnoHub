@@ -55,7 +55,7 @@ function Cards() {
             <h2>{product.name}</h2>
             <p className="product-price">₹{product.price}</p>
             <p>{product.description}</p>
-            <button>Buy Now</button>
+            <button className="popup-btn">Buy Now</button>
           </article>
         )
       })}

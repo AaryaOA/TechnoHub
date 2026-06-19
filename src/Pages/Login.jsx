@@ -38,6 +38,7 @@ function Login({ onSwitch, onLogin }) {
       setMessage('Login successful!')
 
       localStorage.setItem('token', data.token)
+      localStorage.setItem('view', 'home')
 
       setEmail('')
       setPassword('')
@@ -85,7 +86,7 @@ function Login({ onSwitch, onLogin }) {
             />
           </label>
 
-          <button type="submit">Log In</button>
+          <button type="submit" className="popup-btn">Log In</button>
         </form>
 
         {message && (

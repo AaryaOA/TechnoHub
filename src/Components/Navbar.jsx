@@ -1,40 +1,23 @@
-﻿import { useState } from 'react'
-
-function Navbar() {
-  const [search, setSearch] = useState('')
-
+﻿function Navbar({ onAddProduct }) {
   return (
-    <nav className="navbar">
-      <div className="navbar-left">
-        <span className="navbar-brand">TechnoHub</span>
+    <header className="navbar">
+      <div className="navbar-brand">TechnoHub</div>
+
+      <div className="navbar-search">
+        <input
+          type="search"
+          placeholder="Search products..."
+          className="search-input"
+        />
       </div>
 
-      <div className="navbar-center">
-        <label className="navbar-search" htmlFor="product-search">
-          <input
-            id="product-search"
-            className="search-input"
-            type="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search products…"
-            aria-label="Search products"
-          />
-        </label>
-      </div>
-
-      <div className="navbar-right">
-        <button type="button" className="nav-link">
-          Features
-        </button>
-        <button type="button" className="nav-link">
-          Pricing
-        </button>
-        <button type="button" className="nav-link">
-          Contact
-        </button>
-      </div>
-    </nav>
+      <nav className="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+        
+      </nav>
+    </header>
   )
 }
 
